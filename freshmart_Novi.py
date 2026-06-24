@@ -57,11 +57,25 @@ class QueueSupermarket:
 # ==========================================
 st.set_page_config(page_title="FreshMart Express", layout="wide")
 
-# --- ULTRA PREMIUM UI CUSTOM CSS ---
+# --- ULTRA PREMIUM UI CUSTOM CSS WITH MOBILE OVERSIGHT FIX ---
 custom_css = """
 <style>
+    /* Paksa warna latar belakang aplikasi di perangkat mobile/desktop */
     .stApp {
         background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 50%, #ef9a9a 100%) !important;
+    }
+    
+    /* MEMPERBAIKI TEKS INPUT DI HANDPHONE: Memastikan label teks input selalu berwarna gelap solid */
+    label, .stWidgetLabel, [data-testid="stWidgetLabel"] p {
+        color: #1e293b !important;
+        -webkit-text-fill-color: #1e293b !important;
+        font-weight: 600 !important;
+    }
+
+    /* Memastikan teks yang diketik di dalam kotak input berwarna hitam, bukan putih */
+    input {
+        color: #000000 !important;
+        -webkit-text-fill-color: #000000 !important;
     }
     
     [data-testid="stSidebar"] {
@@ -69,8 +83,9 @@ custom_css = """
         border-right: 3px solid #ef4444 !important;
     }
     
-    [data-testid="stSidebar"] h3, [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, [data-testid="stSidebar"] label {
+    [data-testid="stSidebar"] h3, [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, [data-testid="stSidebar"] label, [data-testid="stSidebar"] [data-testid="stWidgetLabel"] p {
         color: #f8fafc !important;
+        -webkit-text-fill-color: #f8fafc !important;
         font-family: 'Segoe UI', system-ui, sans-serif !important;
     }
 
@@ -110,14 +125,13 @@ custom_css = """
     /* Global Heading Style */
     h1, h2, h3, h4, h5, h6 {
         font-family: 'Segoe UI', system-ui, sans-serif !important;
-        background: linear-gradient(45deg, #0f172a, #b91c1c);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        background: linear-gradient(45deg, #0f172a, #b91c1c) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
         font-weight: 800 !important;
         letter-spacing: -0.5px;
     }
     
-    /* PERBAIKAN UTAMA: Memaksa teks di dalam st.metric agar berwarna hitam solid & tidak transparan */
     [data-testid="stMetricValue"] div {
         -webkit-text-fill-color: #0f172a !important;
         color: #0f172a !important;
@@ -127,7 +141,7 @@ custom_css = """
     }
     
     .clean-box {
-        background: rgba(255, 255, 255, 0.85) !important;
+        background: rgba(255, 255, 255, 0.9) !important;
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(255, 255, 255, 0.6) !important;
@@ -235,7 +249,7 @@ antrean = st.session_state.antrean_kasir
 if not st.session_state.is_logged_in:
     _, col_m, _ = st.columns([1, 1.2, 1])
     with col_m:
-        st.markdown('<div style="text-align:center; margin-top:80px; margin-bottom: 10px;"><h1>✨ FreshMart Express</h1><p style="color:#475569; font-size:14px; font-weight:500;">Kasir Berbasis Antrean Dinamis (FIFO)</p></div>', unsafe_allow_html=True)
+        st.markdown('<div style="text-align:center; margin-top:80px; margin-bottom: 10px;"><h1>✨ FreshMart Express</h1><p style="color:#1e293b; font-size:14px; font-weight:500;">Kasir Berbasis Antrean Dinamis (FIFO)</p></div>', unsafe_allow_html=True)
         st.markdown('<div class="clean-box">', unsafe_allow_html=True)
         st.markdown('<h4 style="margin-top:0; margin-bottom:15px; font-size:16px; color:#0f172a;-webkit-text-fill-color:#0f172a !important;">Otorisasi Akses Pegawai</h4>', unsafe_allow_html=True)
         username = st.text_input("Username Kasir:")
