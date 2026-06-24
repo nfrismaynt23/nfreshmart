@@ -65,6 +65,12 @@ custom_css = """
         background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 50%, #ef9a9a 100%) !important;
     }
     
+    /* FIX GLOBAL DARK MODE HP: Paksa semua teks biasa di body agar tetap gelap */
+    .stApp p, .stApp span, .stApp div, .stMarkdown p {
+        color: #0f172a !important;
+        -webkit-text-fill-color: #0f172a !important;
+    }
+    
     /* MEMPERBAIKI TEKS INPUT DI HANDPHONE: Memastikan label teks input selalu berwarna gelap solid */
     label, .stWidgetLabel, [data-testid="stWidgetLabel"] p {
         color: #1e293b !important;
@@ -72,18 +78,34 @@ custom_css = """
         font-weight: 600 !important;
     }
 
-    /* Memastikan teks yang diketik di dalam kotak input berwarna hitam, bukan putih */
-    input {
+    /* Memastikan teks yang diketik di dalam kotak input berwarna hitam dan background-nya tetap putih bersih */
+    input, [data-testid="stTextInput"] div div input, [data-testid="stNumberInput"] div div input {
         color: #000000 !important;
         -webkit-text-fill-color: #000000 !important;
+        background-color: #ffffff !important;
     }
     
+    /* Memperbaiki tampilan box multiselect pilihan barang agar teksnya kelihatan di HP */
+    [data-testid="stMultiSelect"] div div {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+    }
+    
+    /* Memperbaiki tag pilihan barang yang sudah dipilih di multiselect */
+    [data-testid="stMultiSelect"] span {
+        background-color: #ef9a9a !important;
+        color: #0f172a !important;
+    }
+    
+    /* SIDEBAR LOCK: Memastikan teks sidebar tetap putih terang */
     [data-testid="stSidebar"] {
         background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%) !important;
         border-right: 3px solid #ef4444 !important;
     }
     
-    [data-testid="stSidebar"] h3, [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, [data-testid="stSidebar"] label, [data-testid="stSidebar"] [data-testid="stWidgetLabel"] p {
+    [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3, 
+    [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, [data-testid="stSidebar"] label, 
+    [data-testid="stSidebar"] [data-testid="stWidgetLabel"] p {
         color: #f8fafc !important;
         -webkit-text-fill-color: #f8fafc !important;
         font-family: 'Segoe UI', system-ui, sans-serif !important;
@@ -136,8 +158,9 @@ custom_css = """
         -webkit-text-fill-color: #0f172a !important;
         color: #0f172a !important;
     }
-    [data-testid="stMetricLabel"] {
+    [data-testid="stMetricLabel"] p {
         color: #475569 !important;
+        -webkit-text-fill-color: #475569 !important;
     }
     
     .clean-box {
@@ -151,6 +174,12 @@ custom_css = """
         margin-bottom: 22px !important;
         box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08) !important;
     }
+    
+    /* Memastikan semua teks di dalam clean-box dipaksa berwarna gelap */
+    .clean-box p, .clean-box div, .clean-box h4 {
+        color: #0f172a !important;
+        -webkit-text-fill-color: #0f172a !important;
+    }
 
     .empty-graveyard-box {
         background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
@@ -159,6 +188,11 @@ custom_css = """
         padding: 40px 20px !important;
         text-align: center;
         box-shadow: inset 0 2px 8px rgba(0,0,0,0.02) !important;
+    }
+    
+    .empty-graveyard-box h4, .empty-graveyard-box p {
+        color: #64748b !important;
+        -webkit-text-fill-color: #64748b !important;
     }
     
     [data-testid="stMetric"] {
@@ -173,6 +207,7 @@ custom_css = """
     button[kind="primary"] {
         background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%) !important;
         color: white !important;
+        -webkit-text-fill-color: white !important;
         border: none !important;
         border-radius: 12px !important;
         font-weight: 600 !important;
@@ -183,6 +218,7 @@ custom_css = """
     button[kind="secondary"] {
         background: rgba(239, 68, 68, 0.1) !important;
         color: #ef4444 !important;
+        -webkit-text-fill-color: #ef4444 !important;
         border: 1px solid rgba(239, 68, 68, 0.2) !important;
         border-radius: 12px !important;
     }
